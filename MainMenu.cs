@@ -45,14 +45,20 @@ namespace ArribaEats
 
     }
 
-    public static class Menus //main/intro menu class, this is global (everyone sees this) hence seperate class
+    public class MainMenu //main/intro menu class, this is global (everyone sees this) hence seperate class
     {
         private static Menu IntroMenu = new(); //new instance of menu 
-        public static void MainMenu() //main menu method
-        {
-            var login = new Login();
-            var register = new Register();
+        private Login _login;
+        private Register _register;
 
+        public MainMenu() //main menu constructor
+        {
+            _login = new Login(this);
+            _register = new Register(this);
+        }
+
+        public void DisplayMainMenu()
+        {
             Console.WriteLine("Please make a choice from the menu below:");
 
             // Clear options to avoid duplicates if MainMenu is called multiple times
@@ -72,10 +78,10 @@ namespace ArribaEats
             switch (LoginSelection)
             {
                 case LOGIN:
-                    login.LoginMenu(); // call the login method on an instance
+                    _login.LoginMenu(); // call the login method on an instance
                     break;
                 case REGISTER:
-                    register.RegisterMenu(); // call the register method
+                    _register.RegisterMenu(); // call the register method
                     break;
                 case EXIT:
                     Console.WriteLine("Thank you for using Arriba Eats!");

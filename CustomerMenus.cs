@@ -2,7 +2,12 @@ namespace ArribaEats
 {
     public class CustomerMenus : UserMenus //Class that contains the menu for the customer after they have logged in
     {
+        private MainMenu _mainMenu;
 
+        public CustomerMenus(MainMenu mainMenu)
+        {
+            _mainMenu = mainMenu;
+        }
 
         //Instance of the Login class to access its methods
         public override void UserMainMenu() // 
@@ -29,7 +34,7 @@ namespace ArribaEats
             {
                 case USERINFO:
                     // Display user information
-                    Menus.DisplayUserInfo();
+                    MainMenu.DisplayUserInfo();
                     UserMainMenu(); // Return to the main menu
                     break;
                 case SELECTRESTAURANTS:
@@ -45,7 +50,7 @@ namespace ArribaEats
                     break;
                 case LOGOUT:
                     Login.Logout();
-                    Menus.MainMenu(); //return to the main menu
+                    _mainMenu.DisplayMainMenu(); //return to the main menu
                     break;
                 default:
                     Console.WriteLine("Invalid choice.");

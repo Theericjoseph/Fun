@@ -2,6 +2,11 @@ namespace ArribaEats
 {
     public class DelivererMenus : UserMenus //Class that contains the menu for the deliverer after they have logged in
     {
+        private MainMenu _mainMenu;
+        public DelivererMenus(MainMenu mainMenu)
+        {
+            _mainMenu = mainMenu;
+        }
         public override void UserMainMenu()
         {
             Menu delivererMenu = new Menu();
@@ -26,7 +31,7 @@ namespace ArribaEats
             switch (choice)
             {
                 case DISPLAYUSERINFO:
-                    Menus.DisplayUserInfo();
+                    MainMenu.DisplayUserInfo();
                     JobInfo();
                     UserMainMenu(); // Return to the main menu
                     break;
@@ -42,7 +47,7 @@ namespace ArribaEats
                     break;
                 case LOGOUT:
                     Login.Logout();
-                    Menus.MainMenu(); //return to the main menu
+                    _mainMenu.DisplayMainMenu(); //return to the main menu
                     break;
             }
         }

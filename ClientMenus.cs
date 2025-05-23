@@ -4,6 +4,12 @@ namespace ArribaEats
 {
     public class ClientMenus : UserMenus
     {
+        private MainMenu _mainMenu;
+
+        public ClientMenus(MainMenu mainMenu)
+        {
+            _mainMenu = mainMenu;
+        }
         public override void UserMainMenu()
         {
             Menu clientMenu = new();
@@ -31,7 +37,7 @@ namespace ArribaEats
             switch (choice)
             {
                 case DISPLAYUSERINFO:
-                    Menus.DisplayUserInfo();
+                    MainMenu.DisplayUserInfo();
                     UserMainMenu(); // Return to the main menu
                     break;
                 case ADDITEM:
@@ -56,7 +62,7 @@ namespace ArribaEats
                     break;
                 case LOGOUT:
                     Login.Logout();
-                    Menus.MainMenu(); //return to the main menu
+                    _mainMenu.DisplayMainMenu(); //return to the main menu
                     break;
             }
         }

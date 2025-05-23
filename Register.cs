@@ -2,6 +2,11 @@ namespace ArribaEats
 {
     public class Register
     {
+        private MainMenu _mainMenu;
+
+        public Register(MainMenu mainMenu) {
+            _mainMenu = mainMenu;
+        }
         public void RegisterMenu()
         {
             Menu RegisterMenu = new();
@@ -46,7 +51,7 @@ namespace ArribaEats
                     SignUpFinish(UserType);
                     break;
                 case RETURN:
-                    Menus.MainMenu();
+                    _mainMenu.DisplayMainMenu();
                     break;
                 default:
                     Console.WriteLine("Invalid selection.");
@@ -87,7 +92,7 @@ namespace ArribaEats
             }
 
             Console.WriteLine($"You have been successfully registered as a {UserType.GetType().Name.ToLower()}, {name}!");
-            Menus.MainMenu();
+            _mainMenu.DisplayMainMenu();
         }
 
         private string? name = null;
